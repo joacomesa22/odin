@@ -1,3 +1,3 @@
 # odin
 
-Hello Odin!
+The ugliest code you will ever see!
