@@ -1,115 +1,189 @@
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
+const display = document.querySelector("#display");
+const playerScorer = document.querySelector("#playerPoints");
+const cpuScorer = document.querySelector("#cpuPoints");
+
 let playerPoints = 0;
 let computerPoints = 0;
+
 function randomInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 function getComputerChoice() {
   const randomNum = randomInteger(1, 3);
   switch (randomNum) {
     case 1:
-      return "Rock";
-      break;
+      return "rock";
     case 2:
-      return "Paper";
-      break;
+      return "paper";
     case 3:
-      return "Scissors";
-      break;
+      return "scissors";
     default:
       break;
   }
 }
 
+rockBtn.addEventListener("click", () => {
+  playRound("rock", getComputerChoice());
+});
+paperBtn.addEventListener("click", () => {
+  playRound("paper", getComputerChoice());
+});
+scissorsBtn.addEventListener("click", () => {
+  playRound("scissors", getComputerChoice());
+});
+
 function playRound(playerSelection, computerChoice) {
   switch (playerSelection.toLowerCase()) {
     case "rock":
-      switch (computerChoice.toLowerCase()) {
+      switch (computerChoice) {
         case "scissors":
           playerPoints++;
-          alert(
-            `You win! ${playerSelection.toLowerCase()} beats ${computerChoice.toLowerCase()}. You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          if (playerPoints < 5 && computerPoints < 5) {
+            playerScorer.innerText = playerPoints;
+            cpuScorer.innerText = computerPoints;
+            display.innerHTML = "";
+            display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>You won! - ROCK beats SCISSORS</h3></div>`;
+            setTimeout(() => {
+              display.innerHTML = "";
+            }, 2000);
+          }
+          if (playerPoints >= 5) {
+            endGame("Player");
+          } else if (computerPoints >= 5) {
+            endGame("CPU");
+          }
           break;
         case "paper":
           computerPoints++;
-          alert(
-            `You lose! ${computerChoice.toLowerCase()} beats ${playerSelection.toLowerCase()}. You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          if (playerPoints < 5 && computerPoints < 5) {
+            playerScorer.innerText = playerPoints;
+            cpuScorer.innerText = computerPoints;
+            display.innerHTML = "";
+            display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>You lost! - PAPER beats ROCK</h3></div>`;
+            setTimeout(() => {
+              display.innerHTML = "";
+            }, 2000);
+          }
+          if (playerPoints >= 5) {
+            endGame("Player");
+          } else if (computerPoints >= 5) {
+            endGame("CPU");
+          }
           break;
         case "rock":
-          alert(
-            `It's a draw! You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          display.innerHTML = "";
+          display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>IT'S A DRAW!</h3></div>`;
+          setTimeout(() => {
+            display.innerHTML = "";
+          }, 2000);
           break;
       }
       break;
     case "scissors":
-      switch (computerChoice.toLowerCase()) {
+      switch (computerChoice) {
         case "paper":
           playerPoints++;
-          alert(
-            `You win! ${playerSelection.toLowerCase()} beats ${computerChoice.toLowerCase()}. You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          if (playerPoints < 5 && computerPoints < 5) {
+            playerScorer.innerText = playerPoints;
+            cpuScorer.innerText = computerPoints;
+            display.innerHTML = "";
+            display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>You won! - SCISSORS beats PAPER</h3></div>`;
+            setTimeout(() => {
+              display.innerHTML = "";
+            }, 2000);
+          }
+          if (playerPoints >= 5) {
+            endGame("Player");
+          } else if (computerPoints >= 5) {
+            endGame("CPU");
+          }
           break;
         case "rock":
           computerPoints++;
-          alert(
-            `You lose! ${computerChoice.toLowerCase()} beats ${playerSelection.toLowerCase()}. You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          if (playerPoints < 5 && computerPoints < 5) {
+            playerScorer.innerText = playerPoints;
+            cpuScorer.innerText = computerPoints;
+            display.innerHTML = "";
+            display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>You lost! - ROCK beats SCISSORS</h3></div>`;
+            setTimeout(() => {
+              display.innerHTML = "";
+            }, 2000);
+          }
+          if (playerPoints >= 5) {
+            endGame("Player");
+          } else if (computerPoints >= 5) {
+            endGame("CPU");
+          }
           break;
         case "scissors":
-          alert(
-            `It's a draw! You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          display.innerHTML = "";
+          display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>IT'S A DRAW</h3></div>`;
+          setTimeout(() => {
+            display.innerHTML = "";
+          }, 2000);
           break;
       }
       break;
     case "paper":
-      switch (computerChoice.toLowerCase()) {
+      switch (computerChoice) {
         case "rock":
           playerPoints++;
-          alert(
-            `You win! ${playerSelection.toLowerCase()} beats ${computerChoice.toLowerCase()}. You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          if (playerPoints < 5 && computerPoints < 5) {
+            playerScorer.innerText = playerPoints;
+            cpuScorer.innerText = computerPoints;
+            display.innerHTML = "";
+            display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>You won! - PAPER beats ROCK</h3></div>`;
+            setTimeout(() => {
+              display.innerHTML = "";
+            }, 2000);
+          }
+          if (playerPoints >= 5) {
+            endGame("Player");
+          } else if (computerPoints >= 5) {
+            endGame("CPU");
+          }
           break;
         case "scissors":
           computerPoints++;
-          alert(
-            `You lose! ${computerChoice.toLowerCase()} beats ${playerSelection.toLowerCase()}. You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          if (playerPoints < 5 && computerPoints < 5) {
+            playerScorer.innerText = playerPoints;
+            cpuScorer.innerText = computerPoints;
+            display.innerHTML = "";
+            display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>You lost! - SCISSORS beats PAPER</h3></div>`;
+            setTimeout(() => {
+              display.innerHTML = "";
+            }, 2000);
+          }
+          if (playerPoints >= 5) {
+            endGame("Player");
+          } else if (computerPoints >= 5) {
+            endGame("CPU");
+          }
           break;
         case "paper":
-          alert(
-            `It's a draw! You: ${playerPoints} - Computer: ${computerPoints}`
-          );
+          display.innerHTML = "";
+          display.innerHTML = `<div class="roundResult"><h2>CPU CHOSE ${computerChoice}</h2> <h3>IT'S A DRAW</h3></div>`;
+          setTimeout(() => {
+            display.innerHTML = "";
+          }, 2000);
           break;
       }
       break;
   }
 }
 
-function game() {
-  for (let i = 1; i <= 5; i++) {
-    let computerChoice = getComputerChoice();
-    let userInput = prompt("Enter: Rock, Paper or Scissors").toLowerCase();
-    playRound(userInput, computerChoice);
-  }
-  if (playerPoints > computerPoints) {
-    alert(
-      `YOU WON!!! Your Points: ${playerPoints} - Computer Points: ${computerPoints}`
-    );
-    playerPoints = 0;
-  } else if (playerPoints < computerPoints) {
-    alert(
-      `YOU LOST :( Your Points: ${playerPoints} - Computer Points: ${computerPoints}`
-    );
-    computerPoints = 0;
-  } else {
-    alert(
-      `WE HAVE A DRAW!!! Your Points: ${playerPoints} - Computer Points: ${computerPoints}`
-    );
-    playerPoints = 0;
-    computerPoints = 0;
-  }
+function endGame(result) {
+  playerScorer.innerText = 0;
+  cpuScorer.innerText = 0;
+  display.innerHTML = "";
+  display.innerHTML = `<div class="results"><h2> ${result} Wins!!!!</h2> <button class="restartBtn" onclick="restartGame()">Restart Game</button></div>`;
+}
+
+function restartGame() {
+  playerPoints = 0;
+  computerPoints = 0;
+  display.innerHTML = "";
 }
